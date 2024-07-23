@@ -50,6 +50,14 @@
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
                                     </div>
                                 </div>
+                                <div class="flex flex-row pt-4 gap-3">
+
+                                    <input id="text" list="stored-data-options" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Type or select a food">
+                                    <datalist id="stored-data-options"></datalist>
+
+                                    <button id="reboundCalcBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="saveAll()">Save</button>
+                                    <button id="reboundCalcBtn" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="loadAll()">Load</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -496,6 +504,7 @@
         }
 
         changeUnit(document.getElementById("selected-unit"))
+        loadSaveList()
 
 
         if(frntPerc){
@@ -612,6 +621,10 @@
 
 
 
+
+
+
+
         function extraCalc(el){
             var correlated = null
             const isFront = el.parentElement.getElementsByTagName("h2")[0].innerText.includes("(front)")
@@ -645,6 +658,83 @@
 
             console.log("[+] unit changed !")
 
+        }
+
+
+
+        function saveAll(){
+            const storageName = document.getElementById("stored-data").value
+            let storageNameList = JSON.parse(localStorage.getItem("data-options"))
+
+            if(!storageNameList){
+                storageNameList = []
+            }
+
+            if(!storageName){
+                alert("ERROR!!! you need to name the preset!")
+                return
+            }
+
+            storageNameList.push(storageName)
+
+            let datas = {}
+            Object.keys(unitDict).forEach(id=>{
+                const inputs = Array.from(document.getElementById(id).getElementsByTagName("input"))
+                inputs.forEach(input=>{
+                    datas[input.id]=input.value
+                })
+            })
+
+
+
+            localStorage.setItem(storageName, JSON.stringify(datas))
+            localStorage.setItem("data-options", JSON.stringify(storageNameList))
+            localStorage.setItem("last-selected", storageName)
+
+            console.log("[+] preset saved!")
+
+            console.log(datas)
+            loadSaveList()
+        }
+
+
+        function loadSaveList(){
+            let storageNameList = JSON.parse(localStorage.getItem("data-options") || "[]" )
+            let lastSelected = localStorage.getItem("last-selected")
+
+            const datalistEl = document.getElementById("stored-data-options")
+            const datalistInputEl = document.getElementById("stored-data")
+
+            if(!lastSelected){
+                console.log("[-] no last selected found!")
+                return 1
+            }
+
+            if(!storageNameList){
+                console.log("[-] no list found!")
+                return 1
+            }
+
+            datalistInputEl.value = lastSelected
+
+            storageNameList.forEach(storageName=>{
+                const option = document.createElement('option');
+                option.value = storageName;
+                datalistEl.appendChild(option);
+            })
+            console.log("[+] savelist loaded!")
+        }
+
+        function loadAll(){
+            const storageName = document.getElementById("stored-data").value
+            let datas = JSON.parse(localStorage.getItem(storageName))
+
+            Object.keys(datas).forEach(id=>{
+                document.getElementById(id).value = datas[id]
+            })
+
+            console.log("[+] preset loaded!")
+            console.log(datas)
         }
 
 
