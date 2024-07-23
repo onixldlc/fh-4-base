@@ -9,265 +9,281 @@
 <body class="bg-gray-100">
     <div class="flex flex-col gap-5 p-5 min-h-screen justify-center">
 
-        <div>
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                <h2 class="text-2xl font-bold mb-4 text-center">Forza Horizon 4 Calculator</h2>
-                <div class="mb-4">
-                    <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Base Tuner Calculator</label>
-                    <div class="flex appearance-none rounded w-full text-gray-700 leading-tight">
-                        <p>
-                            This is a base-tuning suspension calculator since thats the only one's with formula in it that you can calculate, atleast based on this video <a class="text-blue-500" href="https://www.youtube.com/watch?v=WM7_3NGGUoQ">Forza Horizon 4 How To Tune | Basics Guide</a> by <a class="text-blue-500" href="https://www.youtube.com/@HokiHoshi">HokiHoshi</a> <br>
-                            <br>
-                            Note that this is only for base tuning, sadly im not a magician yet... so i wont know if your car is under or over steering and you probably would need to fine tune it, this is not a tuner this is only to get base suspension based on this formula:<br>
-                            <br>
-                            <b>(Max - Min) * W% + Min</b><br>
-                            <br>
-                            after you get all the suspension value you will need to follow the video for the fine tuning part, here is the tldr from the said video:<br>
-                            <br>
-                            1. tune camber until it sits around 0 when you turn <br>
-                            2. tune tire pressure until you get 33 psi (hot not cold)<br>
-                            <br>
-                            and done that should be your base, now if you encounter any problem you should refrence the video to solve the issue, or you can check the <a class="text-blue-500" href="#problem">problem</a> section underneath
+        <div class="flex flex-row gap-5">
+            <div class="flex">
+                <div class="bg-white p-6 rounded-lg shadow-lg max-w-md min-w-[500px] w-full">
+                    <h2 class="text-2xl font-bold mb-4 text-center">Forza Horizon 4 Calculator</h2>
+                    <div class="mb-4">
+                        <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Base Tuner Calculator</label>
+                        <div class="flex appearance-none rounded w-full text-gray-700 leading-tight">
+                            <p>
+                                This is a base-tuning suspension calculator since thats the only one's with formula in it that you can calculate, atleast based on this video <a class="text-blue-500" href="https://www.youtube.com/watch?v=WM7_3NGGUoQ">Forza Horizon 4 How To Tune | Basics Guide</a> by <a class="text-blue-500" href="https://www.youtube.com/@HokiHoshi">HokiHoshi</a> <br>
+                                <br>
+                                Note that this is only for base tuning, sadly im not a magician yet... so i wont know if your car is under or over steering and you probably would need to fine tune it, this is not a tuner this is only to get base suspension based on this formula:<br>
+                                <br>
+                                <b>(Max - Min) * W% + Min</b><br>
+                                <br>
+                                after you get all the suspension value you will need to follow the video for the fine tuning part, here is the tldr from the said video:<br>
+                                <br>
+                                1. tune camber until it sits around 0 when you turn <br>
+                                2. tune tire pressure until you get 33 psi (hot not cold)<br>
+                                <br>
+                                and done that should be your base, now if you encounter any problem you should refrence the video to solve the issue, or you can check the <a class="text-blue-500" href="#problem">problem</a> section underneath
 
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div>
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                <h2 class="text-2xl font-bold mb-4 text-center">Weight Distribution</h2>
-                <div class="mb-4">
-                    <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Front Weight Percentage</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="frontWeight" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" placeholder="Enter front weight percentage">
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">%</span>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="mb-4">
-                    <label for="rearWeight" class="block text-gray-700 font-bold mb-2">Rear Weight Percentage</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="rearWeight" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" placeholder="Enter rear weight percentage">
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">%</span>
+            </div>
+
+
+            <div class="flex flex-col w-full gap-5">
+                <div class="flex flex-col gap-5 w-full h-full">
+                    <div class="flex flex-row gap-5">
+                        <div class="bg-white p-6 rounded-lg shadow-lg w-full">
+                            <h2 class="text-2xl font-bold mb-4 text-center">Rebound Stiffness (front)</h2>
+
+                            <div class="flex flex-row w-full gap-3">
+                                <div class="mb-4 w-full">
+                                    <label for="f-rb-max" class="block text-gray-700 font-bold mb-2">Rebound Max (front)</label>
+                                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                                        <input type="text" id="f-rb-max" class="w-full focus:outline-none focus:shadow-outline py-2 px-3"  placeholder="Enter Max Rebound" oninput="syncInputHandler(this, getCounterPart(this.id))">
+                                        <div class="flex bg-gray-200 justify-center justify-center">
+                                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-4 w-full">
+                                    <label for="f-rb-min" class="block text-gray-700 font-bold mb-2">Rebound Min (front)</label>
+                                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                                        <input type="text" id="f-rb-min" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" placeholder="Enter Min Rebound" oninput="syncInputHandler(this, getCounterPart(this.id))">
+                                        <div class="flex bg-gray-200 justify-center justify-center">
+                                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="f-rb-res" class="block text-gray-700 font-bold mb-2">result</label>
+                                <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                                    <input type="text" id="f-rb-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" readonly>
+                                    <div class="flex bg-gray-200 justify-center justify-center">
+                                        <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="reboundCalcBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" onclick="doDivCalc(this);extraCalc(this)">Calculate</button>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg w-full">
+                            <h2 class="text-2xl font-bold mb-4 text-center">Rebound Stiffness (rear)</h2>
+
+                            <div class="flex flex-row gap-3">
+                                <div class="mb-4 w-full">
+                                    <label for="r-rb-max" class="block text-gray-700 font-bold mb-2">Rebound Max (rear)</label>
+                                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                                        <input type="text" id="r-rb-max" class="w-full focus:outline-none focus:shadow-outline py-2 px-3"  placeholder="Enter Max Rebound" oninput="syncInputHandler(this, getCounterPart(this.id))">
+                                        <div class="flex bg-gray-200 justify-center justify-center">
+                                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-4 w-full">
+                                    <label for="r-rb-min" class="block text-gray-700 font-bold mb-2">Rebound Min (rear)</label>
+                                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                                        <input type="text" id="r-rb-min" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" placeholder="Enter Min Rebound" oninput="syncInputHandler(this, getCounterPart(this.id))">
+                                        <div class="flex bg-gray-200 justify-center justify-center">
+                                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="r-rb-res" class="block text-gray-700 font-bold mb-2">result</label>
+                                <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                                    <input type="text" id="r-rb-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" readonly>
+                                    <div class="flex bg-gray-200 justify-center justify-center">
+                                        <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="reboundCalcBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" onclick="doDivCalc(this);extraCalc(this)">Calculate</button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row gap-5 h-full">
+                        <div class="bg-white p-6 rounded-lg shadow-lg w-full flex flex-col justify-center">
+                            <h2 class="text-2xl font-bold mb-4 text-center">Bump Stiffness (front)</h2>
+                            <div class="mb-4">
+                                <label for="f-bmp-res" class="block text-gray-700 font-bold mb-2">result</label>
+                                <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                                    <input type="text" id="f-bmp-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" readonly>
+                                    <div class="flex bg-gray-200 justify-center justify-center">
+                                        <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg w-full flex flex-col justify-center">
+                            <h2 class="text-2xl font-bold mb-4 text-center">Bump Stiffness (rear)</h2>
+                            <div class="mb-4">
+                                <label for="r-bmp-res" class="block text-gray-700 font-bold mb-2">result</label>
+                                <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                                    <input type="text" id="f-bmp-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" readonly>
+                                    <div class="flex bg-gray-200 justify-center justify-center">
+                                        <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <button id="setBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Set</button>
+
             </div>
+
         </div>
 
 
-        <div id="spacer" class="py-2">
-            <div class="h-[2px] w-full bg-gray-500 rounded-lg"></div>
-        </div>
 
 
 
         <div class="flex flex-row gap-5">
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                <h2 class="text-2xl font-bold mb-4 text-center">Rebound Stiffness (front)</h2>
-                <div class="mb-4">
-                    <label for="f-rb-max" class="block text-gray-700 font-bold mb-2">Rebound Max (front)</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="f-rb-max" class="w-full focus:outline-none focus:shadow-outline py-2 px-3"  placeholder="Enter Max Rebound">
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+            <div class="flex">
+                <div class="bg-white p-6 rounded-lg shadow-lg max-w-md min-w-[500px] w-full">
+                    <h2 class="text-2xl font-bold mb-4 text-center">Weight Distribution</h2>
+                    <div class="mb-4">
+                        <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Front Weight Percentage</label>
+                        <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                            <input type="text" id="frontWeight" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" placeholder="Enter front weight percentage">
+                            <div class="flex bg-gray-200 justify-center justify-center">
+                                <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">%</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="mb-4">
-                    <label for="f-rb-min" class="block text-gray-700 font-bold mb-2">Rebound Min (front)</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="f-rb-min" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" placeholder="Enter Min Rebound">
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                    <div class="mb-4">
+                        <label for="rearWeight" class="block text-gray-700 font-bold mb-2">Rear Weight Percentage</label>
+                        <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                            <input type="text" id="rearWeight" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" placeholder="Enter rear weight percentage">
+                            <div class="flex bg-gray-200 justify-center justify-center">
+                                <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">%</span>
+                            </div>
                         </div>
                     </div>
+                    <button id="setBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Set</button>
                 </div>
-                <div class="mb-4">
-                    <label for="f-rb-res" class="block text-gray-700 font-bold mb-2">result</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="f-rb-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" readonly>
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
-                        </div>
-                    </div>
-                </div>
-                <button id="reboundCalcBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" onclick="doDivCalc(this);extraCalc(this)">Calculate</button>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                <h2 class="text-2xl font-bold mb-4 text-center">Rebound Stiffness (rear)</h2>
-                <div class="mb-4">
-                    <label for="r-rb-max" class="block text-gray-700 font-bold mb-2">Rebound Max (rear)</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="r-rb-max" class="w-full focus:outline-none focus:shadow-outline py-2 px-3"  placeholder="Enter Max Rebound">
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+
+
+
+
+            <div class="flex flex-row gap-5 w-full">
+                <div class="bg-white p-6 rounded-lg shadow-lg w-full">
+                    <h2 class="text-2xl font-bold mb-4 text-center">Springs (front)</h2>
+
+                    <div class="flex flex-row gap-3">
+                        <div class="mb-4 w-full">
+                            <label for="f-spr-max" class="block text-gray-700 font-bold mb-2">Springs Max (front)</label>
+                            <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                                <input type="text" id="f-spr-max" class="w-full focus:outline-none focus:shadow-outline py-2 px-3"  placeholder="Enter Max Springs" oninput="syncInputHandler(this, getCounterPart(this.id))">
+                                <div class="flex bg-gray-200 justify-center justify-center">
+                                    <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-4 w-full">
+                            <label for="f-spr-min" class="block text-gray-700 font-bold mb-2">Springs Min (front)</label>
+                            <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                                <input type="text" id="f-spr-min" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" placeholder="Enter Min Springs" oninput="syncInputHandler(this, getCounterPart(this.id))">
+                                <div class="flex bg-gray-200 justify-center justify-center">
+                                    <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="mb-4">
-                    <label for="r-rb-min" class="block text-gray-700 font-bold mb-2">Rebound Min (rear)</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="r-rb-min" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" placeholder="Enter Min Rebound">
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+
+                    <div class="mb-4">
+                        <label for="f-spr-res" class="block text-gray-700 font-bold mb-2">result</label>
+                        <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                            <input type="text" id="f-spr-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" readonly>
+                            <div class="flex bg-gray-200 justify-center justify-center">
+                                <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                            </div>
                         </div>
                     </div>
+                    <button id="reboundCalcBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" onclick="doDivCalc(this)">Calculate</button>
                 </div>
-                <div class="mb-4">
-                    <label for="r-rb-res" class="block text-gray-700 font-bold mb-2">result</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="r-rb-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" readonly>
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                <div class="bg-white p-6 rounded-lg shadow-lg w-full">
+                    <h2 class="text-2xl font-bold mb-4 text-center">Springs (rear)</h2>
+
+                    <div class="flex flex-row gap-3">
+                        <div class="mb-4 w-full">
+                            <label for="r-spr-max" class="block text-gray-700 font-bold mb-2">Springs Max (rear)</label>
+                            <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                                <input type="text" id="r-spr-max" class="w-full focus:outline-none focus:shadow-outline py-2 px-3"  placeholder="Enter Max Springs" oninput="syncInputHandler(this, getCounterPart(this.id))">
+                                <div class="flex bg-gray-200 justify-center justify-center">
+                                    <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-4 w-full">
+                            <label for="r-spr-min" class="block text-gray-700 font-bold mb-2">Springs Min (rear)</label>
+                            <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                                <input type="text" id="r-spr-min" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" placeholder="Enter Min Springs" oninput="syncInputHandler(this, getCounterPart(this.id))">
+                                <div class="flex bg-gray-200 justify-center justify-center">
+                                    <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="mb-4">
+                        <label for="r-spr-res" class="block text-gray-700 font-bold mb-2">result</label>
+                        <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                            <input type="text" id="r-spr-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" readonly>
+                            <div class="flex bg-gray-200 justify-center justify-center">
+                                <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="reboundCalcBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" onclick="doDivCalc(this)">Calculate</button>
                 </div>
-                <button id="reboundCalcBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" onclick="doDivCalc(this);extraCalc(this)">Calculate</button>
             </div>
+
+
         </div>
 
 
-
-
-
-
-        <div class="flex flex-row gap-5">
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                <h2 class="text-2xl font-bold mb-4 text-center">Bump Stiffness (front)</h2>
-                <div class="mb-4">
-                    <label for="f-bmp-res" class="block text-gray-700 font-bold mb-2">result</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="f-bmp-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" readonly>
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                <h2 class="text-2xl font-bold mb-4 text-center">Bump Stiffness (rear)</h2>
-                <div class="mb-4">
-                    <label for="r-bmp-res" class="block text-gray-700 font-bold mb-2">result</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="f-bmp-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" readonly>
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div id="spacer" class="py-2">
-            <div class="h-[2px] w-full bg-gray-500 rounded-lg"></div>
-        </div>
-
-
-
-        <div class="flex flex-row gap-5">
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                <h2 class="text-2xl font-bold mb-4 text-center">Springs (front)</h2>
-                <div class="mb-4">
-                    <label for="f-rb-max" class="block text-gray-700 font-bold mb-2">Springs Max (front)</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="f-rb-max" class="w-full focus:outline-none focus:shadow-outline py-2 px-3"  placeholder="Enter Max Springs">
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <label for="f-rb-min" class="block text-gray-700 font-bold mb-2">Springs Min (front)</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="f-rb-min" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" placeholder="Enter Min Springs">
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <label for="f-rb-res" class="block text-gray-700 font-bold mb-2">result</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="f-rb-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" readonly>
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
-                        </div>
-                    </div>
-                </div>
-                <button id="reboundCalcBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" onclick="doDivCalc(this)">Calculate</button>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                <h2 class="text-2xl font-bold mb-4 text-center">Springs (rear)</h2>
-                <div class="mb-4">
-                    <label for="r-rb-max" class="block text-gray-700 font-bold mb-2">Springs Max (rear)</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="r-rb-max" class="w-full focus:outline-none focus:shadow-outline py-2 px-3"  placeholder="Enter Max Springs">
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <label for="r-rb-min" class="block text-gray-700 font-bold mb-2">Springs Min (rear)</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="r-rb-min" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" placeholder="Enter Min Springs">
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <label for="r-rb-res" class="block text-gray-700 font-bold mb-2">result</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="r-rb-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" readonly>
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
-                        </div>
-                    </div>
-                </div>
-                <button id="reboundCalcBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" onclick="doDivCalc(this)">Calculate</button>
-            </div>
-        </div>
-
-
-        <div id="spacer" class="py-2">
-            <div class="h-[2px] w-full bg-gray-500 rounded-lg"></div>
-        </div>
-
-
-
-        <div class="flex flex-row gap-5">
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+        
+        <div class="flex flex-row gap-5  w-full">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full">
                 <h2 class="text-2xl font-bold mb-4 text-center">AntiRoll Bars (front)</h2>
-                <div class="mb-4">
-                    <label for="f-rb-max" class="block text-gray-700 font-bold mb-2">AntiRoll Bars Max (front)</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="f-rb-max" class="w-full focus:outline-none focus:shadow-outline py-2 px-3"  placeholder="Enter Max AntiRoll Bars">
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+
+                <div class="flex flex-row gap-3">
+                    <div class="mb-4 w-full">
+                        <label for="f-arb-max" class="block text-gray-700 font-bold mb-2">AntiRoll Bars Max (front)</label>
+                        <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                            <input type="text" id="f-arb-max" class="w-full focus:outline-none focus:shadow-outline py-2 px-3"  placeholder="Enter Max AntiRoll Bars" oninput="syncInputHandler(this, getCounterPart(this.id))">
+                            <div class="flex bg-gray-200 justify-center justify-center">
+                                <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4 w-full">
+                        <label for="f-arb-min" class="block text-gray-700 font-bold mb-2">AntiRoll Bars Min (front)</label>
+                        <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                            <input type="text" id="f-arb-min" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" placeholder="Enter Min AntiRoll Bars" oninput="syncInputHandler(this, getCounterPart(this.id))">
+                            <div class="flex bg-gray-200 justify-center justify-center">
+                                <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="mb-4">
-                    <label for="f-rb-min" class="block text-gray-700 font-bold mb-2">AntiRoll Bars Min (front)</label>
+                    <label for="f-arb-res" class="block text-gray-700 font-bold mb-2">result</label>
                     <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="f-rb-min" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" placeholder="Enter Min AntiRoll Bars">
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <label for="f-rb-res" class="block text-gray-700 font-bold mb-2">result</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="f-rb-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" readonly>
+                        <input type="text" id="f-arb-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" readonly>
                         <div class="flex bg-gray-200 justify-center justify-center">
                             <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
                         </div>
@@ -275,30 +291,34 @@
                 </div>
                 <button id="reboundCalcBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" onclick="doDivCalc(this)">Calculate</button>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full">
                 <h2 class="text-2xl font-bold mb-4 text-center">AntiRoll Bars (rear)</h2>
-                <div class="mb-4">
-                    <label for="r-rb-max" class="block text-gray-700 font-bold mb-2">AntiRoll Bars Max (rear)</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="r-rb-max" class="w-full focus:outline-none focus:shadow-outline py-2 px-3"  placeholder="Enter Max AntiRoll Bars">
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+
+                <div class="flex flex-row gap-3">
+                    <div class="mb-4 w-full">
+                        <label for="r-arb-max" class="block text-gray-700 font-bold mb-2">AntiRoll Bars Max (rear)</label>
+                        <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                            <input type="text" id="r-arb-max" class="w-full focus:outline-none focus:shadow-outline py-2 px-3"  placeholder="Enter Max AntiRoll Bars">
+                            <div class="flex bg-gray-200 justify-center justify-center">
+                                <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4 w-full">
+                        <label for="r-arb-min" class="block text-gray-700 font-bold mb-2">AntiRoll Bars Min (rear)</label>
+                        <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
+                            <input type="text" id="r-arb-min" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" placeholder="Enter Min AntiRoll Bars">
+                            <div class="flex bg-gray-200 justify-center justify-center">
+                                <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="mb-4">
-                    <label for="r-rb-min" class="block text-gray-700 font-bold mb-2">AntiRoll Bars Min (rear)</label>
+                    <label for="r-arb-res" class="block text-gray-700 font-bold mb-2">result</label>
                     <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="r-rb-min" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" placeholder="Enter Min AntiRoll Bars">
-                        <div class="flex bg-gray-200 justify-center justify-center">
-                            <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <label for="r-rb-res" class="block text-gray-700 font-bold mb-2">result</label>
-                    <div class="flex shadow appearance-none border rounded w-full text-gray-700 leading-tight">
-                        <input type="text" id="r-rb-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" readonly>
+                        <input type="text" id="r-arb-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3" readonly>
                         <div class="flex bg-gray-200 justify-center justify-center">
                             <span class="w-fit justify-center py-2 px-3 font-bold text-gray-400">unit</span>
                         </div>
@@ -310,14 +330,14 @@
 
 
 
-        <div id="spacer" class="py-2">
+        <div id="spacer" class="py-16">
             <div class="h-[2px] w-full bg-gray-500 rounded-lg"></div>
         </div>
 
 
 
         <div class="flex flex-row gap-5">
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+            <div class="bg-white p-6 rounded-lg shadow-lg min-w-[500px] max-w-md w-full">
                 <h2 class="text-2xl font-bold mb-4 text-center">Notes</h2>
                 <div class="mb-4">
                     <!-- <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Problems</label> -->
@@ -331,10 +351,58 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="flex flex-row gap-5 w-full">
+                <div class="bg-white p-6 rounded-lg shadow-lg w-full">
+                    <h2 class="text-2xl font-bold mb-4 text-center">Unstable car Issues</h2>
+                    <div class="mb-4">
+                        <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Unstable car</label>
+                        <div id="problem" class="flex appearance-none rounded w-full text-gray-700 leading-tight">
+                            <p>
+                                for <b>unstable car</b> you might want to try to:<br>
+                                - <b>soften</b> front suspension <br>
+                                &ensp;(im not sure what he meant but its probably spring ?)<br>
+                                - <b>decrease</b> toe <br>
+                                &ensp;(im not sure if its in or out and rear or front)<br>
+                                - <b>adjust</b> rebound/bump<br>
+                                &ensp;(again not sure lowering or increasing)<br>
+                                - <b>adjust</b> downforce<br>
+                                &ensp;(yeap... not sure front or rear and add or sub<br>
+                                - <b>check</b> if bottoming out <br>
+                                &ensp;(maybe adjust height ? im not sure and dont know)<br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg w-full">
+                    <h2 class="text-2xl font-bold mb-4 text-center">Lost of grip Issues</h2>
+                    <div class="mb-4">
+                        <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Lost of grip</label>
+                        <div id="problem" class="flex appearance-none rounded w-full text-gray-700 leading-tight">
+                            <p>
+                                for <b>lost of grip</b> you might want to try to:<br>
+                                - <b>lower</b> tire pressure<br>
+                                - <b>decrease</b> diff lock percentage<br>
+                                - <b>move</b> center diff <b> towards 50% (AWD ONLY)</b><br>
+                                - <b>adjust</b> rebound/bump stiffness<br>
+                                &ensp;(and again not sure lowering or increasing)<br>
+                                - <b>check</b> camber settings<br>
+                                - <b>move</b> gearing towards "speed"<br>
+                                - <b>increase</b> downforce<br>
+                                - <b>soften</b> anti-roll bars/springs<br>
+                                &ensp;(not sure front or rear)<br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-       <div class="flex flex-row gap-5">
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+       <div class="flex flex-row gap-5 w-full">
+
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full">
                 <h2 class="text-2xl font-bold mb-4 text-center">Understeering Issues</h2>
                 <div class="mb-4">
                     <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Understeering</label>
@@ -353,7 +421,7 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full">
                 <h2 class="text-2xl font-bold mb-4 text-center">Oversteering Issues</h2>
                 <div class="mb-4">
                     <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Oversteering</label>
@@ -370,48 +438,7 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                <h2 class="text-2xl font-bold mb-4 text-center">Unstable car Issues</h2>
-                <div class="mb-4">
-                    <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Unstable car</label>
-                    <div id="problem" class="flex appearance-none rounded w-full text-gray-700 leading-tight">
-                        <p>
-                            for <b>unstable car</b> you might want to try to:<br>
-                            - <b>soften</b> front suspension <br>
-                            &ensp;(im not sure what he meant but its probably spring ?)<br>
-                            - <b>decrease</b> toe <br>
-                            &ensp;(im not sure if its in or out and rear or front)<br>
-                            - <b>adjust</b> rebound/bump<br>
-                            &ensp;(again not sure lowering or increasing)<br>
-                            - <b>adjust</b> downforce<br>
-                            &ensp;(yeap... not sure front or rear and add or sub<br>
-                            - <b>check</b> if bottoming out <br>
-                            &ensp;(maybe adjust height ? im not sure and dont know)<br>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                <h2 class="text-2xl font-bold mb-4 text-center">Lost of grip Issues</h2>
-                <div class="mb-4">
-                    <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Lost of grip</label>
-                    <div id="problem" class="flex appearance-none rounded w-full text-gray-700 leading-tight">
-                        <p>
-                            for <b>lost of grip</b> you might want to try to:<br>
-                            - <b>lower</b> tire pressure<br>
-                            - <b>decrease</b> diff lock percentage<br>
-                            - <b>move</b> center diff <b> towards 50% (AWD ONLY)</b><br>
-                            - <b>adjust</b> rebound/bump stiffness<br>
-                            &ensp;(and again not sure lowering or increasing)<br>
-                            - <b>check</b> camber settings<br>
-                            - <b>move</b> gearing towards "speed"<br>
-                            - <b>increase</b> downforce<br>
-                            - <b>soften</b> anti-roll bars/springs<br>
-                            &ensp;(not sure front or rear)<br>
-                        </p>
-                    </div>
-                </div>
-            </div>
+
         </div>
 
     </div>
@@ -424,6 +451,14 @@
 
         frntPerc = localStorage.getItem("frntPerc");
         rearPerc = localStorage.getItem("rearPerc");
+
+        if(frntPerc){
+            frntEl.value = Math.round(frntPerc*100)
+        }
+
+        if(rearPerc){
+            rearEl.value = Math.round(rearPerc*100)
+        }
 
         document.getElementById('setBtn').addEventListener('click', function() {
             var frontWeightVal = parseFloat(frntEl.value);
@@ -461,6 +496,21 @@
         function save(name, data){
             localStorage.setItem(name, data)
             return data
+        }
+
+
+
+        function syncInputHandler(el, id){
+            document.getElementById(id).value = el.value
+        }
+        function getCounterPart(id){
+            ids = id.split("-")
+            if(ids[0]=="r"){
+                ids[0]="f"
+            }else{
+                ids[0]="r"
+            }
+            return ids.join("-")
         }
 
 
