@@ -57,7 +57,8 @@
                                 <div class="flex flex-row gap-3">
 
                                     <div class="relative flex w-full">
-                                        <select id="stored-data-options" class="block appearance-none w-full bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-900 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow dark:shadow-gray-950 leading-tight focus:outline-none focus:shadow-outline" oninput="syncInputHandler(this, 'stored-data')">
+                                        <select id="stored-data-options" class="block appearance-none w-full bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-900 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow dark:shadow-gray-950 leading-tight focus:outline-none focus:shadow-outline" oninput="syncInputHandler(this, 'stored-data'); loadAll()">
+                                            <option value="" onclick="clearAll()"></option>
                                         </select>
                                         <input type="text" name="stored-data" id="stored-data" placeholder="add/select a value" onfocus="this.select()" class="absolute my-auto top-0 bottom-0 left-[1px] w-[calc(100%-30px)] h-[calc(100%-2px)] focus:outline-none focus:shadow-outline py-2 px-3 dark:bg-slate-900 rounded">
                                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-gray-300">
@@ -261,9 +262,9 @@
 
 
 
-        <div id="WD" class="flex flex-row gap-5">
+        <div class="flex flex-row gap-5">
             <div class="flex">
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg dark:shadow-gray-950 max-w-md min-w-[500px] w-full">
+                <div id="WD" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg dark:shadow-gray-950 max-w-md min-w-[500px] w-full">
                     <h2 class="text-2xl font-bold mb-4 text-center">1. Weight Distribution</h2>
                     <div class="mb-4">
                         <label for="frontWeight" class="block text-gray-700 dark:text-gray-300 font-bold mb-2">Front Weight Percentage</label>
@@ -850,8 +851,6 @@
                 return 1
             }
 
-            storageNameList.unshift("")
-
             storageNameList.forEach(storageName=>{
                 const option = document.createElement('option');
                 option.value = storageName;
@@ -902,6 +901,15 @@
             }catch (e) {
                 console.log(e)
             }
+        }
+
+        function clearAll(){
+            Object.keys(unitDict).forEach(id=>{
+                const inputs = Array.from(document.getElementById(id).getElementsByTagName("input"))
+                inputs.forEach(input=>{
+                    input.value=""
+                })
+            })
         }
 
     </script>
