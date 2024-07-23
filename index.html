@@ -41,19 +41,30 @@
                                   units:
                                 </label>
                                 <div class="relative">
-                                    <select id="selected-unit" class="block appearance-none w-full bg-white dark:bg-gray-800 border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow dark:shadow-gray-950 leading-tight focus:outline-none focus:shadow-outline" oninput="changeUnit(this)">
+                                    <select id="selected-unit" class="block appearance-none w-full bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-900 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow dark:shadow-gray-950 leading-tight focus:outline-none focus:shadow-outline" oninput="changeUnit(this)">
                                         <option value="Unit">Unit</option>
                                         <option value="Metric">Metric</option>
                                         <option value="Murica">Murica</option>
                                     </select>
                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-gray-300">
-                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
                                     </div>
                                 </div>
-                                <div class="flex flex-row pt-4 gap-3">
 
-                                    <input id="stored-data" list="stored-data-options" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Type or select a food">
-                                    <datalist id="stored-data-options"></datalist>
+                                <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2 pt-4" for="favorite-food">
+                                  presets:
+                                </label>
+                                <div class="flex flex-row gap-3">
+
+                                    <div class="relative flex w-full">
+                                        <select id="stored-data-options" class="block appearance-none w-full bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-900 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow dark:shadow-gray-950 leading-tight focus:outline-none focus:shadow-outline" oninput="syncInputHandler(this, 'stored-data')">
+                                        </select>
+                                        <input type="text" name="stored-data" id="stored-data" placeholder="add/select a value" onfocus="this.select()" class="absolute my-auto top-0 bottom-0 left-[1px] w-[calc(100%-30px)] h-[calc(100%-2px)] focus:outline-none focus:shadow-outline py-2 px-3 dark:bg-slate-900 rounded">
+                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-gray-300">
+                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                                        </div>
+                                    </div>
+                                    
 
                                     <button id="reboundCalcBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="saveAll()">Save</button>
                                     <button id="reboundCalcBtn" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="loadAll()">Load</button>
@@ -158,7 +169,7 @@
                             <div class="mb-4">
                                 <label for="r-bmp-res" class="block text-gray-700 dark:text-gray-300 font-bold mb-2">result</label>
                                 <div class="flex shadow dark:shadow-gray-950 appearance-none border rounded w-full text-gray-700 dark:text-gray-300 leading-tight dark:border-slate-700">
-                                    <input type="text" id="f-bmp-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3 dark:bg-slate-900 rounded" readonly>
+                                    <input type="text" id="r-bmp-res" class="w-full focus:outline-none focus:shadow-outline py-2 px-3 dark:bg-slate-900 rounded" readonly>
                                     <div class="flex bg-gray-200 dark:bg-gray-700 justify-center justify-center">
                                         <span class="w-fit min-w-[75px] text-center justify-center py-2 px-3 font-bold text-gray-400">unit</span>
                                     </div>
@@ -250,7 +261,7 @@
 
 
 
-        <div class="flex flex-row gap-5">
+        <div id="WD" class="flex flex-row gap-5">
             <div class="flex">
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg dark:shadow-gray-950 max-w-md min-w-[500px] w-full">
                     <h2 class="text-2xl font-bold mb-4 text-center">1. Weight Distribution</h2>
@@ -471,7 +482,123 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- success Alert -->
+    <div x-data="alertComponent" x-show="alertIsVisible" :class="{ 'hidden': !onetime }" class="hidden shadow-green-400 fixed w-[400px] overflow-hidden rounded-xl border border-green-600 bg-white text-slate-700 dark:bg-slate-900 dark:text-slate-300 right-[20px] bottom-[20px]" role="alert" 
+    x-transition:enter="transition ease-out duration-100" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
+    x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90" 
+    x-ref="alert">
+        <div class="flex w-full items-center gap-2 bg-green-600/10 p-4">
+            <div class="bg-green-600/15 text-green-600 rounded-full p-1" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-6" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-2">
+                <h3 class="text-sm font-semibold text-green-600" x-text="title">Successfully Subscribed</h3>
+                <p class="text-xs font-medium sm:text-sm" x-text="message">Success! You've subscribed to our newsletter. Welcome aboard!</p>
+            </div>
+            <button type="button" @click="alertIsVisible = false" class="ml-auto" aria-label="dismiss alert">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" fill="none" stroke-width="2.5" class="w-4 h-4 shrink-0">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
     <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('alertComponent', () => ({
+                alertIsVisible: false,
+                title: '',
+                message: '',
+                onetime: true,
+                showPopUp(title="Success", message="Success!") {
+                    this.onetime = true
+                    this.alertIsVisible = true;
+                    this.title = title
+                    this.message = message
+                    setTimeout(() => {
+                        this.alertIsVisible = false;
+                    }, 1000); // Hide after 3 seconds
+                },
+                init() {
+                    window.showPopUp = this.showPopUp.bind(this);
+                }
+            }));
+        });
+    </script>
+
+
+
+    <script src="https://unpkg.com/alpinejs"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script defer>
+        function tempStuff(el){
+            document.getElementById('displayValue').value=el.options[el.selectedIndex].text; document.getElementById('idValue').value=el.options[el.selectedIndex].value;
+        }
+
         frntEl = document.getElementById('frontWeight')
         rearEl = document.getElementById('rearWeight')
 
@@ -501,11 +628,16 @@
                 "Metric":"unit",
                 "Murica":"unit"
             },
+            "WD":{
+                "Unit":"%",
+                "Metric":"%",
+                "Murica":"%"
+            }
         }
 
         changeUnit(document.getElementById("selected-unit"))
         loadSaveList()
-
+        loadAll()
 
         if(frntPerc){
             frntEl.value = Math.round(frntPerc*100)
@@ -675,7 +807,9 @@
                 return
             }
 
-            storageNameList.push(storageName)
+            if(!storageNameList.includes(storageName)){
+                storageNameList.push(storageName)
+            }
 
             let datas = {}
             Object.keys(unitDict).forEach(id=>{
@@ -692,6 +826,7 @@
             localStorage.setItem("last-selected", storageName)
 
             console.log("[+] preset saved!")
+            showPopUp("Saved!", "Data was saved successfully!")
 
             console.log(datas)
             loadSaveList()
@@ -715,29 +850,63 @@
                 return 1
             }
 
-            datalistInputEl.value = lastSelected
+            storageNameList.unshift("")
 
             storageNameList.forEach(storageName=>{
                 const option = document.createElement('option');
                 option.value = storageName;
-                datalistEl.appendChild(option);
+                option.innerText = storageName;
+                if(!Array.from(datalistEl.children).map(el=>el.value).includes(storageName)){
+                    datalistEl.appendChild(option);
+                }
             })
+
+            datalistInputEl.value = lastSelected
+            datalistEl.value = lastSelected
+
             console.log("[+] savelist loaded!")
         }
+
 
         function loadAll(){
             const storageName = document.getElementById("stored-data").value
             let datas = JSON.parse(localStorage.getItem(storageName))
 
+            if(!storageName){
+                console.log("[-] no preset name!")
+                return 1
+            }
+
+            if(!datas){
+                console.log("[-] no preset available!")
+                return 1
+            }
+
             Object.keys(datas).forEach(id=>{
                 document.getElementById(id).value = datas[id]
             })
 
+            localStorage.setItem("last-selected", storageName)
+
             console.log("[+] preset loaded!")
-            console.log(datas)
+            // console.log(datas)
+
+            const frontWeightVal = parseFloat(frntEl.value);
+            const rearWeightVal = parseFloat(rearEl.value);
+
+            frntPerc = (frontWeightVal/100).toFixed(2)
+            rearPerc = (rearWeightVal/100).toFixed(2)
+
+            try{
+                showPopUp("Loaded!", "Data was loaded from localstorage successfully!")
+            }catch (e) {
+                console.log(e)
+            }
         }
 
-
     </script>
+
+
+
 </body>
 </html>
