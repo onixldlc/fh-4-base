@@ -309,15 +309,37 @@
         </div>
 
 
+
+        <div id="spacer" class="py-2">
+            <div class="h-[2px] w-full bg-gray-500 rounded-lg"></div>
+        </div>
+
+
+
         <div class="flex flex-row gap-5">
             <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
                 <h2 class="text-2xl font-bold mb-4 text-center">Notes</h2>
                 <div class="mb-4">
-                    <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Problems</label>
+                    <!-- <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Problems</label> -->
                     <div id="problem" class="flex appearance-none rounded w-full text-gray-700 leading-tight">
                         <p>
-                            The video also gave some pointer on what to change if a problem may arises after base tuning:<br>
+                            <b>im a noob...</b> so i have no clue if any of these are true or what you actually should do since i did just learn this 5 minutes ago from a youtube video that span 26 minutes, in any case you probably should discuss or ask around the community for more indepth help in tuning<br>
                             <br>
+                            <br>
+                            Also the video gave some pointer on what to change if a problem may arises after base tuning:<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       <div class="flex flex-row gap-5">
+            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                <h2 class="text-2xl font-bold mb-4 text-center">Understeering Issues</h2>
+                <div class="mb-4">
+                    <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Understeering</label>
+                    <div id="problem" class="flex appearance-none rounded w-full text-gray-700 leading-tight">
+                        <p>
                             for <b>understeering</b> you might want to try to:<br>
                             - <b>soften</b> front anti-roll bars<br>
                             - <b>soften</b> front springs<br>
@@ -327,6 +349,16 @@
                             - <b>lower</b> front rebound stiffness<br>
                             - <b>lower</b> diff lock percentage<br>
                             <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                <h2 class="text-2xl font-bold mb-4 text-center">Oversteering Issues</h2>
+                <div class="mb-4">
+                    <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Oversteering</label>
+                    <div id="problem" class="flex appearance-none rounded w-full text-gray-700 leading-tight">
+                        <p>
                             for <b>oversteering</b> you might want to try to:<br>
                             - <b>soften</b> rear anti-roll bars<br>
                             - <b>increase</b> rear downforce<br>
@@ -334,7 +366,16 @@
                             - <b>decrease</b> rear rebound stiffness<br>
                             - <b>increase</b> diff lock percentage<br>
                             - <b>move</b> center diff <b> towards 50% (AWD ONLY)</b><br>
-                            <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                <h2 class="text-2xl font-bold mb-4 text-center">Unstable car Issues</h2>
+                <div class="mb-4">
+                    <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Unstable car</label>
+                    <div id="problem" class="flex appearance-none rounded w-full text-gray-700 leading-tight">
+                        <p>
                             for <b>unstable car</b> you might want to try to:<br>
                             - <b>soften</b> front suspension <br>
                             &ensp;(im not sure what he meant but its probably spring ?)<br>
@@ -346,7 +387,16 @@
                             &ensp;(yeap... not sure front or rear and add or sub<br>
                             - <b>check</b> if bottoming out <br>
                             &ensp;(maybe adjust height ? im not sure and dont know)<br>
-                            <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                <h2 class="text-2xl font-bold mb-4 text-center">Lost of grip Issues</h2>
+                <div class="mb-4">
+                    <label for="frontWeight" class="block text-gray-700 font-bold mb-2">Lost of grip</label>
+                    <div id="problem" class="flex appearance-none rounded w-full text-gray-700 leading-tight">
+                        <p>
                             for <b>lost of grip</b> you might want to try to:<br>
                             - <b>lower</b> tire pressure<br>
                             - <b>decrease</b> diff lock percentage<br>
@@ -358,13 +408,12 @@
                             - <b>increase</b> downforce<br>
                             - <b>soften</b> anti-roll bars/springs<br>
                             &ensp;(not sure front or rear)<br>
-                            <br>
-                            <b>NOTE:</b> <b>im a noob...</b> so i have no clue if any of these are true or what you actually should do, in any case you probably should discuss or ask around the community for more indepth help in tuning<br>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
 
@@ -486,57 +535,6 @@
 
             console.log("[+] extra calculated!", (res.value*0.6).toFixed(2))
         }
-
-
-
-
-
-
-
-        // function doDivCalc2(el){
-        //     var percentage = null
-        //     const isFront = el.parentElement.getElementsByTagName("h2")[0].innerText.includes("(front)")
-        //     const inputs = el.parentElement.getElementsByTagName("input")
-
-        //     const max = parseFloat(inputs[0].value)
-        //     const min = parseFloat(inputs[1].value)
-        //     const res = inputs[2]
-
-        //     console.log(max,min,res)
-
-
-        //     if(frntPerc == null || rearPerc == null){
-        //         alert("error!!! please enter car weight distribution")
-        //         return 1
-        //     }
-
-        //     if( !max || !min ){
-        //         alert("error!!! you need to fill min and max value!")
-        //         return 1
-        //     }
-
-        //     if( isNaN(max) || isNaN(min) ){
-        //         alert("error!!! needed number not text !")
-        //         return 1
-        //     }
-
-
-        //     if(isFront){
-        //         percentage = frntPerc
-        //     }else{
-        //         percentage = rearPerc
-        //     }
-        //     const result = formula1(max, min, percentage).toFixed(2)
-        //     res.value = result
-
-        //     console.log("[+] value calculated!", formula1(max, min, percentage), percentage*100+"%")
-        // }
-
-
-
-        // function doDivCalc2(el){
-        //     window.temp = el
-        // }
 
     </script>
 </body>
